@@ -23,20 +23,6 @@ The application is designed to manage academic projects. It includes the followi
 - **TiposProyecto**: Different types of projects.
 - **Universidades**: Information about universities.
 
-### Project Structure
-
-The project is organized as follows:
-
-asesorias-academicas/
-├── models/ # Mongoose models
-├── routes/ # Express routes
-├── .env # Environment variables
-├── .gitignore # Git ignore file
-├── initDatabase.js # Database initialization script
-├── package.json # Project metadata and dependencies
-├── server.js # Main server file
-└── README.md # Project manual
-
 
 ### Prerequisites
 
@@ -78,37 +64,6 @@ To initialize the database with sample data, run the initDatabase.js script. Thi
 
 node initDatabase.js
 ```
-
-### API Usage
-The API provides endpoints for managing clients, project stages, projects, project types, and universities. Below is a summary of the available endpoints and their usage:
-
-Clients (Clientes)
-GET /clientes: Retrieve a list of all clients.
-POST /clientes: Create a new client.
-PUT /clientes/:id: Update an existing client by ID.
-DELETE /clientes/:id: Delete a client by ID.
-Project Stages (Etapas)
-GET /etapas: Retrieve a list of all project stages.
-POST /etapas: Create a new project stage.
-PUT /etapas/:id: Update an existing project stage by ID.
-DELETE /etapas/:id: Delete a project stage by ID.
-Projects (Proyectos)
-GET /proyectos: Retrieve a list of all projects, including related client, project type, university, and stage information.
-POST /proyectos: Create a new project.
-PUT /proyectos/:id: Update an existing project by ID.
-DELETE /proyectos/:id: Delete a project by ID.
-Project Types (TiposProyecto)
-GET /tiposProyecto: Retrieve a list of all project types.
-POST /tiposProyecto: Create a new project type.
-PUT /tiposProyecto/:id: Update an existing project type by ID.
-DELETE /tiposProyecto/:id: Delete a project type by ID.
-Universities (Universidades)
-GET /universidades: Retrieve a list of all universities.
-POST /universidades: Create a new university.
-PUT /universidades/:id: Update an existing university by ID.
-DELETE /universidades/:id: Delete a university by ID.
-Testing the API
-You can test the API using tools like Postman or curl. Below are examples of how to interact with the API using curl:
 
 ## API request examples:
 
