@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const Cliente = require('./models/Cliente');
-const Etapa = require('./models/Etapa');
-const Proyecto = require('./models/Proyecto');
-const TipoProyecto = require('./models/TipoProyecto');
-const Universidad = require('./models/Universidad');
+const Cliente = require('./Cliente/models/Cliente');
+const Etapa = require('./App/models/Etapa');
+const Proyecto = require('./App/models/Proyecto');
+const TipoProyecto = require('./App/models/TipoProyecto');
+const Universidad = require('./App/models/Universidad');
 
 const mongoURI = process.env.MONGO_URI;
 
