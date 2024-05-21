@@ -1,3 +1,4 @@
+const fs = require('fs'); // Add this line to import the fs module
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,7 +7,20 @@ require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
 
-const mongoURI = process.env.MONGO_URI;
+// old method to handle hidden .env
+// const mongoURI = process.env.MONGO_URI;
+
+// Function to get MongoDB URI
+function getMongoURI() {
+  const secretPath = process.env.MONGO_URI_FILE || '/run/secrets/mongo_uri';
+  if (fs.existsSync(secretPath)) {
+    return fs.readFileSync(secretPath, 'utf8').trim();
+  }
+  return process.env.MONGO_URI;
+}
+
+const mongoURI = getMongoURI();
+
 
 // MongoDB Connection
 mongoose.connect(mongoURI, {

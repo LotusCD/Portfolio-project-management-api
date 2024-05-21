@@ -14,10 +14,10 @@ RUN npm install
 COPY . .
 
 # Set environment variables.
-ENV PORT=3001
+ENV PORT=3000
 
 # Expose the port the app runs on.
-EXPOSE 3001
+EXPOSE 3000
 
 # Run the web service on container startup.
 CMD ["node", "server.js"]

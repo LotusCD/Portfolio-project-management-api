@@ -1,3 +1,4 @@
+const fs = require('fs'); // Add this line to import the fs module
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -22,5 +23,5 @@ db.once('open', () => console.log('Connected to MongoDB'));
 app.use('/etapas', require('./routes/etapas'));
 // Add other routes here
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

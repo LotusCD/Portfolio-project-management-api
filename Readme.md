@@ -2,6 +2,12 @@
 
 This manual provides a comprehensive guide for setting up and running a Node.js application with MongoDB. The application manages academic projects, including clients, project stages, project types, universities, and projects.
 
+Clients is the most demanded application and App is the monolithic application
+
+### Iu Digital - Tecnologías web
+
+
+
 #### Table of Contents
 
 1. **Project Overview**
