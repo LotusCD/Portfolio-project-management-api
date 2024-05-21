@@ -103,3 +103,32 @@ curl -X DELETE http://localhost:3000/clientes/{client_id}
 ```
 
 Replace {client_id} with the actual ID of the client you want to update or delete.
+
+## How to build with docker
+
+### Login to docker hub
+```
+docker login
+```
+
+### Use these commands for each app
+
+#### Cliente
+1. sudo docker build -t clienteasesorias:firstimage .
+
+2. sudo docker run -d -p 3000:3000 clienteasesorias:firstimage
+
+3. sudo docker tag 8d0f8abbb9a7 cesardp/asesorias-academicas:clienteasesorias-firstimage
+
+4. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+
+---
+
+#### Monolithic
+1. sudo docker build -t appasesorias:firstimage .
+2. sudo docker run -d -p 3001:3001 appasesorias:firstimage
+3. sudo docker tag 30bd1a5b2319 cesardp/asesorias-academicas:appasesorias-firstimage
+4. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+
+### Frequent issues
+docker logout and login again
