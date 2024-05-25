@@ -115,20 +115,19 @@ docker login
 
 #### Cliente
 1. sudo docker build -t clienteasesorias:firstimage .
+2. sudo docker tag a04a50cad993 cesardp/asesorias-academicas:clienteasesorias-firstimage
+3. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+4. sudo docker run -p 3000:3000 clienteasesorias:firstimage
 
-2. sudo docker run -d -p 3000:3000 clienteasesorias:firstimage
-
-3. sudo docker tag 8d0f8abbb9a7 cesardp/asesorias-academicas:clienteasesorias-firstimage
-
-4. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
 
 ---
 
 #### Monolithic
 1. sudo docker build -t appasesorias:firstimage .
-2. sudo docker run -d -p 3001:3001 appasesorias:firstimage
-3. sudo docker tag 30bd1a5b2319 cesardp/asesorias-academicas:appasesorias-firstimage
-4. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+2. sudo docker tag 68e1531afb87 cesardp/asesorias-academicas:appasesorias-firstimage
+3. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+4. sudo docker run -d -p 3001:3001 appasesorias:firstimage
+
 
 ### Frequent issues
 docker logout and login again
