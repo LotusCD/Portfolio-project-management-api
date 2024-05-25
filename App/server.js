@@ -7,7 +7,12 @@ require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
 
+// Function to get MongoDB URI
 const mongoURI = process.env.MONGO_URI;
+if (!mongoURI) {
+  console.error('MongoDB URI is undefined. Please check your .env file.');
+  process.exit(1);
+}
 
 // MongoDB Connection
 mongoose.connect(mongoURI, {

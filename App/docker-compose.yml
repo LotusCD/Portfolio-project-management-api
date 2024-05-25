@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   appasesorias:
     build: .
@@ -8,16 +8,24 @@ services:
       - .env
     environment:
       - MONGO_URI_FILE=/run/secrets/mongo_uri
+    secrets:
+      - mongo_uri
     depends_on:
       - mongo
+
   mongo:
     image: mongo
-    env_file:
-      - .env
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+
+secrets:
+  mongo_uri:
+    external: true
 
 volumes:
   mongo-data:

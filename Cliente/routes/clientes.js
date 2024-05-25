@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Cliente = require('../models/Cliente');
+const os = require('os'); // Import os module to get hostname
+
+
+// Middleware para logs
+router.use((req, res, next) => {
+  console.log(`Request received on instance: ${os.hostname()} on port: ${process.env.PORT}`);
+  next();
+});
 
 // Listar clientes
 router.get('/', async (req, res) => {

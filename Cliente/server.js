@@ -11,16 +11,11 @@ app.use(bodyParser.json());
 // const mongoURI = process.env.MONGO_URI;
 
 // Function to get MongoDB URI
-function getMongoURI() {
-  const secretPath = process.env.MONGO_URI_FILE || '/run/secrets/mongo_uri';
-  if (fs.existsSync(secretPath)) {
-    return fs.readFileSync(secretPath, 'utf8').trim();
-  }
-  return process.env.MONGO_URI;
+const mongoURI = process.env.MONGO_URI;
+if (!mongoURI) {
+  console.error('MongoDB URI is undefined. Please check your .env file.');
+  process.exit(1);
 }
-
-const mongoURI = getMongoURI();
-
 
 // MongoDB Connection
 mongoose.connect(mongoURI, {
