@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_USERNAME = // Replace with your Docker Hub username
+        DOCKERHUB_PASSWORD = // Replace with your Docker Hub password
+    }
+
+    stages {
+        stage('Initialize') {
+            steps {
+                script {
+                    def dockerHome = tool 'DockerJenkins'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/LotusCD/Portfolio-project-management-api', branch: 'main'
+            }
+        }
+        stage('Build Cliente Docker Image') {
+            steps {
+                dir('./Cliente') { // Adjust this path to the actual directory
+                    script {
+                        docker.build('cliente-image:latest', '.')
+                    }
+                }
+            }
+        }
+        stage('Tag and Push Cliente Docker Image') {
+            steps {
+                script {
+                    def clienteImage = docker.image('cliente-image:latest')
+                    clienteImage.push('latest')
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            emailext (
+                to: 'cdpuentesf@gmail.com',
+                subject: "Pipeline ${currentBuild.fullDisplayName}",
+                body: "Pipeline ${currentBuild.fullDisplayName} completed with status: ${currentBuild.currentResult}"
+            )
+        }
+    }
+}
