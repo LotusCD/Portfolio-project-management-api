@@ -115,8 +115,8 @@ docker login
 
 #### Cliente
 1. sudo docker build -t clienteasesorias:firstimage .
-2. sudo docker tag a04a50cad993 cesardp/asesorias-academicas:clienteasesorias-firstimage
-3. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+2. sudo docker tag (dockerid) user/docker-repo:clienteasesorias-firstimage
+3. sudo docker push user/docker-repo:clienteasesorias-firstimage
 4. sudo docker run -p 3000:3000 clienteasesorias:firstimage
 
 
@@ -124,10 +124,16 @@ docker login
 
 #### Monolithic
 1. sudo docker build -t appasesorias:firstimage .
-2. sudo docker tag 68e1531afb87 cesardp/asesorias-academicas:appasesorias-firstimage
-3. sudo docker push cesardp/asesorias-academicas:clienteasesorias-firstimage
+2. sudo docker tag (dockerid) user/docker-repo:appasesorias-firstimage
+3. sudo docker push user/docker-repo:clienteasesorias-firstimage
 4. sudo docker run -d -p 3001:3001 appasesorias:firstimage
 
 
 ### Frequent issues
 docker logout and login again
+
+### Start jenkins with docker access
+```
+sudo docker run -p 8080:8080 -p 50000:50000 --user root -v /home/user:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins
+
+```
