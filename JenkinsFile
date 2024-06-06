@@ -29,16 +29,42 @@ pipeline {
             steps {
                 dir('./Cliente') { // Adjust this path to the actual directory
                     script {
-                        docker.build('cliente-image:latest', '.')
+                        docker.build('cesardp/asesorias-academicas-cliente:latest', '.')
                     }
+                }
+            }
+        }
+        stage('Build App Docker Image') {
+            steps {
+                dir('./App') { // Adjust this path to the actual directory
+                    script {
+                        docker.build('cesardp/asesorias-academicas-app:latest', '.')
+                    }
+                }
+            }
+        }
+        stage('Login to Docker Hub') {
+            steps {
+                script {
+                    sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
                 }
             }
         }
         stage('Tag and Push Cliente Docker Image') {
             steps {
                 script {
-                    def clienteImage = docker.image('cliente-image:latest')
+                    def clienteImage = docker.image('cesardp/asesorias-academicas-cliente:latest')
                     clienteImage.push('latest')
+                    clienteImage.push('cliente')
+                }
+            }
+        }
+        stage('Tag and Push App Docker Image') {
+            steps {
+                script {
+                    def appImage = docker.image('cesardp/asesorias-academicas-app:latest')
+                    appImage.push('latest')
+                    appImage.push('app')
                 }
             }
         }
